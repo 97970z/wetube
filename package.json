@@ -7,7 +7,7 @@
     "url": "git+https://github.com/97970z/wetube.git"
   },
   "scripts": {
-    "dev": "nodemon --exec babel-node src/server.js"
+    "dev": "nodemon --exec babel-node src/init.js"
   },
   "author": "97970zz@gmail.com",
   "license": "MIT",
@@ -17,6 +17,7 @@
   "homepage": "https://github.com/97970z/wetube#readme",
   "dependencies": {
     "express": "^4.17.3",
+    "mongoose": "^6.3.3",
     "morgan": "^1.10.0",
     "pug": "^3.0.2"
   },
