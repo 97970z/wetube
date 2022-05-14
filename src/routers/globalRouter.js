@@ -7,5 +7,6 @@ const globalRouter = express.Router(); // router 생성
 globalRouter.get("/", home);
 globalRouter.get("/join", join);
 globalRouter.get("/login", login);
+globalRouter.get("/search", search);
 
 export default globalRouter; // globalRouter를 server.js로 보내기 위해서 export
