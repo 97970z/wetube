@@ -16,8 +16,12 @@
   },
   "homepage": "https://github.com/97970z/wetube#readme",
   "dependencies": {
+    "bcrypt": "^5.0.1",
+    "connect-mongo": "^4.6.0",
+    "dotenv": "^16.0.1",
     "express": "^4.17.3",
-    "mongoose": "^6.3.3",
+    "express-session": "^1.17.3",
+    "mongoose": "^6.3.4",
     "morgan": "^1.10.0",
     "pug": "^3.0.2"
   },
