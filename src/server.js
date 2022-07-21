@@ -24,6 +24,7 @@ app.use(
 );
 
 app.use(localsMiddleware);
+app.use("/uploads", express.static("uploads"));
 app.use("/", rootRouter);
 app.use("/videos", videoRouter); // /videos로 시작하는 url로 접근하면 videoRouter안에 있는 url을 찾아줌
 app.use("/users", userRouter);

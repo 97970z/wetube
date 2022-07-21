@@ -9,12 +9,15 @@ const userSchema = new mongoose.Schema({
   password: { type: String, required: true },
   name: { type: String, required: true },
   location: String,
+  videos: [{ type: mongoose.Schema.Types.ObjectId, ref: "Video" }],
 });
 
 // 암호 해싱 ( one-way function이라 절대 되돌릴 수 없음 )
 // 문자열을 알아볼수 없게 바꿔서 DB에 저장시킴.
 userSchema.pre("save", async function () {
-  this.password = await bcrypt.hash(this.password, 5);
+  if (this.isModified("password")) {
+    this.password = await bcrypt.hash(this.password, 5);
+  }
 });
 
 const User = mongoose.model("User", userSchema);
