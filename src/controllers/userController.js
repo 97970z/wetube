@@ -72,8 +72,8 @@ export const postEdit = async (req, res) => {
     file,
   } = req;
 
-  console.log(file);
-  console.log(req.body);
+  // console.log(file);
+  // console.log(req.body);
 
   const emailChanged = email !== req.session.user.email;
   if (emailChanged) {
