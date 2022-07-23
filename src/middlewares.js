@@ -16,6 +16,25 @@ const multerUploader = multerS3({
   acl: "public-read",
 });
 
+export const s3DeleteAvatarMiddleware = (req, res, next) => {
+  if (!req.file) {
+    return next();
+  }
+  s3.deleteObject(
+    {
+      Bucket: `videotubetest`,
+      Key: `images/${req.session.user.avatarURL.split("/")[4]}`,
+    },
+    (err, data) => {
+      if (err) {
+        throw err;
+      }
+      console.log(`s3 deleteObject`, data);
+    }
+  );
+  next();
+};
+
 export const localsMiddleware = (req, res, next) => {
   res.locals.loggedIn = Boolean(req.session.loggedIn);
   res.locals.siteName = "Wetube";
