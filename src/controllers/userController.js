@@ -72,7 +72,7 @@ export const postEdit = async (req, res) => {
     file,
   } = req;
 
-  // console.log(file);
+  console.log(file);
   // console.log(req.body);
 
   const emailChanged = email !== req.session.user.email;
@@ -100,7 +100,7 @@ export const postEdit = async (req, res) => {
   const updatedUser = await User.findByIdAndUpdate(
     _id,
     {
-      avatarUrl: file ? file.path : avatarUrl,
+      avatarUrl: file ? file.location : avatarUrl,
       name,
       email,
       username,

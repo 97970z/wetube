@@ -19,6 +19,7 @@ app.set("view engine", "pug"); // view engine을 pug로 설정
 app.set("views", process.cwd() + "/src/views"); // pug의 현재작업디렉토리 기본값 변경
 app.use(express.urlencoded({ extended: true })); // express가 form의 value들을 이해할수 있게함
 app.use(express.json());
+
 app.use(
   helmet({
     contentSecurityPolicy: false,
