@@ -6,6 +6,9 @@ import MongoStore from "connect-mongo";
 import rootRouter from "./routers/rootRouter";
 import videoRouter from "./routers/videoRouter";
 import userRouter from "./routers/userRouter";
+import apiRouter from "./routers/apiRouter";
+import helmet from "helmet";
+import flash from "express-flash";
 import { localsMiddleware } from "./middlewares";
 
 const app = express(); // express() -> express application 생성
@@ -14,6 +17,13 @@ app.use(morgan("dev"));
 app.set("view engine", "pug"); // view engine을 pug로 설정
 app.set("views", process.cwd() + "/src/views"); // pug의 현재작업디렉토리 기본값 변경
 app.use(express.urlencoded({ extended: true })); // express가 form의 value들을 이해할수 있게함
+
+app.use(
+  helmet({
+    contentSecurityPolicy: false,
+  })
+);
+
 app.use(
   session({
     secret: process.env.COOKIE_SECRET,
@@ -23,10 +33,13 @@ app.use(
   })
 );
 
+app.use(flash());
 app.use(localsMiddleware);
 app.use("/uploads", express.static("uploads"));
+app.use("/static", express.static("assets"));
 app.use("/", rootRouter);
 app.use("/videos", videoRouter); // /videos로 시작하는 url로 접근하면 videoRouter안에 있는 url을 찾아줌
 app.use("/users", userRouter);
+app.use("/api", apiRouter);
 
 export default app;
