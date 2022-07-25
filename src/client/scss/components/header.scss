@@ -3,6 +3,15 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-direction: row;
+
+  .header__title {
+    color: white;
+    font-family: "Roboto", sans-serif;
+    font-size: 25px;
+    width: 100%;
+    margin-left: 5px;
+  }
   .header__logo {
     color: $red;
     font-size: 38px;
