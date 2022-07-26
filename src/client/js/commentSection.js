@@ -1,8 +1,8 @@
 const videoContainer = document.getElementById("videoContainer");
 const form = document.getElementById("commentForm");
-const textarea = form.querySelector("textarea");
+const textarea = form.querySelector("input");
 const btn = form.querySelector("button");
-const deleteBtns = document.querySelectorAll(".video__comment-delete");
+const deleteBtns = document.querySelectorAll(".video__comment__deleteBtn");
 
 const addComment = (text, id) => {
   const videoComments = document.querySelector(".video__comments ul");
@@ -14,7 +14,7 @@ const addComment = (text, id) => {
   const span = document.createElement("span");
   span.innerText = ` ${text}`;
   const deleteSpan = document.createElement("span");
-  deleteSpan.className = "video__comment-delete";
+  deleteSpan.className = ".video__comment__deleteBtn";
   deleteSpan.innerText = `❌`;
   newComment.appendChild(icon);
   newComment.appendChild(span);
@@ -25,7 +25,7 @@ const addComment = (text, id) => {
 
 const handleSubmit = async (event) => {
   event.preventDefault();
-  const textarea = form.querySelector("textarea");
+  const textarea = form.querySelector("input");
   const text = textarea.value;
   const videoId = videoContainer.dataset.id;
   if (text === "") {
@@ -52,7 +52,6 @@ const handleDeleteComment = async (event) => {
   const {
     dataset: { id },
   } = li;
-  // console.log(id);
   const response = await fetch(`/api/comments/${id}`, {
     method: "DELETE",
     headers: { "Content-Type": "application/json" },

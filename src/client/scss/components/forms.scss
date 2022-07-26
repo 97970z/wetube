@@ -9,7 +9,7 @@ form:not(.video__comment-form) {
   }
 }
 
-input:not([type="range"]),
+input:not([type="range"], [name="commentInput"]),
 input[type="submit"] {
   all: unset;
   padding: 15px 20px;
