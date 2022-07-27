@@ -113,7 +113,8 @@ const playCheck = () => {
 };
 
 const spacePlayCheck = (e) => {
-  if (e.keyCode === 32) {
+  if (e.keyCode === 32 && e.target === document.body) {
+    e.preventDefault();
     playCheck();
   }
   playBtnIcon.classList = video.paused ? "fas fa-play" : "fas fa-pause";

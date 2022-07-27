@@ -1,23 +1,40 @@
 const videoContainer = document.getElementById("videoContainer");
 const form = document.getElementById("commentForm");
-const textarea = form.querySelector("input");
+const textarea = form.querySelector("textarea");
 const btn = form.querySelector("button");
 const deleteBtns = document.querySelectorAll(".video__comment__deleteBtn");
 
 const addComment = (text, id) => {
   const videoComments = document.querySelector(".video__comments ul");
   const newComment = document.createElement("li");
-  newComment.dataset.id = id;
   newComment.className = "video__comment";
-  const icon = document.createElement("i");
-  icon.className = "fas fa-comment";
-  const span = document.createElement("span");
-  span.innerText = ` ${text}`;
+  newComment.dataset.id = id;
+
+  const newCommentLeft = document.createElement("div");
+  newCommentLeft.className = "video__comment--left";
+
+  const newCommentUserInfo = document.createElement("div");
+  newCommentUserInfo.className = "video__comment--spans";
+
+  const span = document.createElement("a");
+  span.innerText = `${form.dataset.username} `;
+
+  const span3 = document.createElement("span");
+  span3.innerText = new Date().toLocaleDateString("ko-kr").replaceAll(" ", "");
+
+  const span2 = document.createElement("span");
+  span2.innerText = text;
+
   const deleteSpan = document.createElement("span");
   deleteSpan.className = ".video__comment__deleteBtn";
   deleteSpan.innerText = `❌`;
-  newComment.appendChild(icon);
-  newComment.appendChild(span);
+
+  // newCommentLeft.appendChild(icon);
+  newCommentUserInfo.appendChild(span);
+  newCommentUserInfo.appendChild(span3);
+  newCommentUserInfo.appendChild(span2);
+  newCommentLeft.appendChild(newCommentUserInfo);
+  newComment.appendChild(newCommentLeft);
   newComment.appendChild(deleteSpan);
   videoComments.prepend(newComment);
   deleteSpan.addEventListener("click", handleDeleteComment);
@@ -25,9 +42,10 @@ const addComment = (text, id) => {
 
 const handleSubmit = async (event) => {
   event.preventDefault();
-  const textarea = form.querySelector("input");
+  const textarea = form.querySelector("textarea");
   const text = textarea.value;
   const videoId = videoContainer.dataset.id;
+
   if (text === "") {
     return;
   }

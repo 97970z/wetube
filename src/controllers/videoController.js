@@ -2,6 +2,33 @@ import Video from "../models/Video";
 import Comment from "../models/Comment";
 import User from "../models/User";
 
+function timeSince(date) {
+  var seconds = Math.floor((new Date() - date) / 1000);
+
+  var interval = seconds / 31536000;
+
+  if (interval > 1) {
+    return Math.floor(interval) + "년";
+  }
+  interval = seconds / 2592000;
+  if (interval > 1) {
+    return Math.floor(interval) + "달";
+  }
+  interval = seconds / 86400;
+  if (interval > 1) {
+    return Math.floor(interval) + "일";
+  }
+  interval = seconds / 3600;
+  if (interval > 1) {
+    return Math.floor(interval) + "시간";
+  }
+  interval = seconds / 60;
+  if (interval > 1) {
+    return Math.floor(interval) + "분";
+  }
+  return Math.floor(seconds) + "초";
+}
+
 export const home = async (req, res) => {
   const videos = await Video.find({})
     .sort({ createdAt: "desc" })
@@ -11,12 +38,47 @@ export const home = async (req, res) => {
 
 export const watch = async (req, res) => {
   const { id } = req.params;
-  const video = await Video.findById(id).populate("owner").populate("comments");
+  const video = await Video.findById(id)
+    .populate("owner")
+    .populate("comments")
+    .populate("comments.owner");
   const comm = await Comment.count();
   if (!video) {
     return res.render("404", { pageTitle: "Video not found." });
   }
-  return res.render("watch", { pageTitle: video.title, video, comm });
+
+  const uploadedTime = timeSince(video.createdAt) + " 전";
+  const printUploadedDay = new Date(video.createdAt)
+    .toLocaleDateString("ko-kr")
+    .replaceAll(" ", "");
+
+  let comments = [];
+  let count = 0;
+  for (const item of video.comments.reverse()) {
+    count += 1;
+    const comment = await Comment.findById(item.id).populate("owner");
+    comments.push({
+      id: comment.id,
+      text: comment.text,
+      username: comment.owner.username,
+      owner_id: comment.owner._id,
+      createdAt: new Date(comment.createdAt)
+        .toLocaleDateString("ko-kr")
+        .replaceAll(" ", ""),
+    });
+    if (count >= 25) {
+      break;
+    }
+  }
+
+  return res.render("watch", {
+    pageTitle: video.title,
+    video,
+    uploadedTime,
+    printUploadedDay,
+    comm,
+    comments,
+  });
 };
 
 export const getEdit = async (req, res) => {
@@ -148,6 +210,7 @@ export const createComment = async (req, res) => {
   const comment = await Comment.create({
     text,
     owner: user._id,
+    ownername: user.username,
     video: id,
   });
   video.comments.push(comment._id);

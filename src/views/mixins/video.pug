@@ -8,4 +8,4 @@ mixin video(video)
                 span #{video.owner.name} 
                 br
                 span 조회수 #{video.meta.views} 회 • 
-                span=new Date(video.createdAt).toLocaleDateString("ko-kr", {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'})
+                span=new Date(video.createdAt).toLocaleDateString("ko-kr", {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'})   
