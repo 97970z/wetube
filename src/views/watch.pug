@@ -53,7 +53,7 @@ block content
 
     
     div.video__comments__input
-        span 댓글 #{comm} 개
+        span.commentCount 댓글 #{video.comments.length} 개
         if loggedIn
                 div.video__add-comments
                     form.video__comment-form#commentForm(data-username=loggedInUser.username)

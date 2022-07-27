@@ -149,10 +149,9 @@ export const postChangePassword = async (req, res) => {
 };
 
 export const logout = (req, res) => {
-  req.session.loggedIn = false;
-  req.session.user = "";
-  //req.session.destroy();
-  req.flash("info", "Bye Bye");
+  req.session.user = null;
+  res.locals.loggedInUser = req.session.user;
+  req.session.destroy();
   return res.redirect("/");
 };
 export const edit = (req, res) => res.send("Edit User");

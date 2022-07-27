@@ -3,6 +3,9 @@ const form = document.getElementById("commentForm");
 const textarea = form.querySelector("textarea");
 const btn = form.querySelector("button");
 const deleteBtns = document.querySelectorAll(".video__comment__deleteBtn");
+const cc = document.querySelectorAll(".commentCount");
+let commentRender = document.querySelectorAll(".video__comment");
+let commnetCount = commentRender.length;
 
 const addComment = (text, id) => {
   const videoComments = document.querySelector(".video__comments ul");
@@ -29,7 +32,6 @@ const addComment = (text, id) => {
   deleteSpan.className = ".video__comment__deleteBtn";
   deleteSpan.innerText = `❌`;
 
-  // newCommentLeft.appendChild(icon);
   newCommentUserInfo.appendChild(span);
   newCommentUserInfo.appendChild(span3);
   newCommentUserInfo.appendChild(span2);
@@ -49,6 +51,11 @@ const handleSubmit = async (event) => {
   if (text === "") {
     return;
   }
+
+  let commentRender = document.querySelectorAll(".video__comment");
+  let commentCount = commentRender.length + 1;
+  cc.forEach((cc) => (cc.innerHTML = `댓글 ${commentCount} 개`));
+
   const response = await fetch(`/api/videos/${videoId}/comment`, {
     method: "POST",
     headers: {
@@ -70,6 +77,11 @@ const handleDeleteComment = async (event) => {
   const {
     dataset: { id },
   } = li;
+
+  let commentRender = document.querySelectorAll(".video__comment");
+  let commentCount = commentRender.length - 1;
+  cc.forEach((cc) => (cc.innerHTML = `댓글 ${commentCount} 개`));
+
   const response = await fetch(`/api/comments/${id}`, {
     method: "DELETE",
     headers: { "Content-Type": "application/json" },
