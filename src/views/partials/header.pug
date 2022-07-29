@@ -1,28 +1,28 @@
 header
-    a(href="/").header__logo
-        i.fab.fa-youtube
+    div
+        a(href="/").header__logo
+            i.fab.fa-youtube
         a(href="/").header__title HanTube
-    nav
-        ul
-            li
-                a(href="/search")
-                    i.fas.fa-search
+
+    div.menu
+        a(href="/search")
+            i.fas.fa-search
+        div.dropdown
             if loggedIn
-                li
-                    a(href="/videos/upload") Upload Video
-                li
-                    a(href=`/users/${loggedInUser._id}`) My Profile
-                li
-                    a(href="/users/edit") Edit Profile
-                li
-                    a(href="/users/logout")  Log Out
-                li
-                    a(href=`/users/${loggedInUser._id}`)
-                        if loggedInUser.avatarUrl === ""
-                            span 😀
-                        else
-                            if loggedInUser.avatarUrl
-                                img.header__avatar(src=loggedInUser.avatarUrl crossorigin)
+                span.dropbtn
+                    if loggedInUser.avatarUrl === ""
+                        span 😀
+                    else
+                        if loggedInUser.avatarUrl
+                            img.header__avatar(src=loggedInUser.avatarUrl crossorigin)
+                div.dropdown-content
+                        a(href="/videos/upload") Upload Video
+                        hr
+                        a(href=`/users/${loggedInUser._id}`) My Profile
+                        hr
+                        a(href="/users/edit") Edit Profile
+                        hr
+                        a(href="/users/logout")  Log Out
             else
-                li
-                    a(href="/join").header__btn  Join
+                a(href="/login").header__btn Login
+                a(href="/join").header__btn Join

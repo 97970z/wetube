@@ -1,5 +1,4 @@
 // express라는 패키지 node_modules에서 찾아서 express란 이름으로 import함
-// WWGqXcNOm8PhmWsJ
 import express from "express";
 import morgan from "morgan";
 import session from "express-session";
