@@ -23,6 +23,7 @@
   .video__title {
     font-size: 1.8rem;
     font-weight: 400;
+    margin-top: 5px;
     margin-bottom: 5px;
   }
   .video__createdAt {
@@ -54,6 +55,7 @@
   .video__description--moreBtn {
     color: #aaa;
     margin-left: 82px;
+    cursor: pointer;
   }
 }
 
@@ -117,6 +119,7 @@
 .video__comment--left a {
   color: rgb(83, 198, 234);
   text-decoration: underline;
+  cursor: pointer;
 }
 .video__comment--left {
   display: block;
