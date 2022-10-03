@@ -43,6 +43,9 @@ export const watch = async (req, res) => {
     .populate("comments")
     .populate("comments.owner");
   const comm = await Comment.count();
+  const videos = await Video.find({})
+    .sort({ createdAt: "desc" })
+    .populate("owner");
   if (!video) {
     return res.render("404", { pageTitle: "Video not found." });
   }
@@ -78,6 +81,7 @@ export const watch = async (req, res) => {
     printUploadedDay,
     comm,
     comments,
+    videos,
   });
 };
 

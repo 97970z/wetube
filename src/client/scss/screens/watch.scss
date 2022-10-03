@@ -59,21 +59,26 @@
   }
 }
 
-.video__comments__input {
-  padding-top: 20px;
-  font-size: 17px;
-  max-width: 600px;
-  width: 600px;
+.holy {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 1200px;
 }
+
+.video__comments__input {
+  padding-top: 10px;
+  font-size: 17px;
+  display: inline-block;
+  width: 100%;
+}
+
 .video__comments {
   display: flex;
   flex-direction: column;
   margin-top: 20px;
-  width: 100%;
-  max-width: 650px;
   padding-left: 50px;
   .video__comment {
-    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -87,12 +92,12 @@
   cursor: pointer;
 }
 .video__comment-form {
-  width: 600px;
+  width: 700px;
 }
 .video__comment-form__text {
   margin-top: 30px;
   margin-left: 60px;
-  max-width: 600px;
+  max-width: 700px;
   width: 100%;
   overflow-y: hidden;
   resize: none;
@@ -108,7 +113,7 @@
 }
 .video__comment-form__btn {
   margin-top: 15px;
-  margin-left: 600px;
+  margin-left: 700px;
   background-color: #3ea6ff;
   height: 25px;
   width: 60px;
@@ -143,4 +148,66 @@
   overflow: hidden;
   max-height: none;
   font-size: 19px;
+}
+
+.video__comment--header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 1000px;
+  margin-bottom: 10px;
+}
+
+.video__recomendations {
+  margin-top: 40px;
+  margin-left: 50px;
+  width: 600px;
+  line-height: 1.2;
+  display: inline-block;
+
+  img {
+    width: 170px;
+    height: 100px;
+    border-radius: 5px;
+  }
+}
+
+.video__recomendations--video {
+  margin-bottom: 15px;
+  cursor: pointer;
+  // img태그 오른쪽에 title을 오게 하고 싶을 때
+  img {
+    float: left;
+    margin-right: 10px;
+  }
+}
+
+.video__recomendations--video__info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 100px;
+}
+
+.video__recomendations--video__title {
+  font-size: 1rem;
+  font-weight: 400;
+  color: white;
+  &:hover {
+    color: #aaa;
+  }
+}
+
+.video__recomendations--video__owner,
+.video__recomendations--video__views,
+.video__recomendations--video__date {
+  font-size: 0.7rem;
+  font-weight: 400;
+  color: #aaa;
+}
+
+.video__recomendations--video__owner:hover,
+.video__recomendations--video__views:hover,
+.video__recomendations--video__date:hover {
+  color: white;
 }

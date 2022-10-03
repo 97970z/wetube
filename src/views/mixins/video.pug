@@ -3,9 +3,12 @@ mixin video(video)
         div.video-mixin__thumb
             img(src=video.thumbUrl crossorigin)
         div.video-mixin__data
-            span.video-mixin__title=video.title
+            if video.title.length > 20
+                span.video-mixin__title #{video.title.slice(0, 20)}...
+            else
+                span.video-mixin__title=video.title
             div.video-mixin__meta
-                span #{video.owner.name} 
+                span #{video.owner.username} 
                 br
                 span 조회수 #{video.meta.views} 회 • 
                 span=new Date(video.createdAt).toLocaleDateString("ko-kr", {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'})   

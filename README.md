@@ -4,23 +4,19 @@
 
 **사용기술**
 
-1. Front
-   HTML(PUG), CSS, JS
+Front-End : HTML(PUG), CSS, JS
 
-2. Back
-   NodeJS
+Back-End : NodeJS
 
-3. DB
-   MongoDB
+DB : MongoDB
 
-4. Build & Deploy
-   Webpack
-   Heroku & AWS S3
+Build&Deploy : Webpack & Heroku & AWS S3
 
 ---
 
 **이 프로젝트를 진행한 이유**
-JavaScript를 배우고 재밌게 공부할 수 있는 방법으로 현재 서비스되는 사이트를 클론하는 것을 선택하였고,
+JavaScript를 배우고 재밌게 공부할 수 있는 방법으로
+현재 서비스되는 사이트를 클론하는 것을 선택하였고,
 DB연동, Front - Back의 연결, 실제 사용되는 기술의 이해를 위해 진행하였음.
 
 ---

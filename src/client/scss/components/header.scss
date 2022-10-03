@@ -45,21 +45,6 @@ header {
     display: block;
   }
 
-  // ul {
-  //   display: flex;
-  //   justify-content: space-between;
-  //   align-items: center;
-  //   li {
-  //     margin-left: 10px;
-  //     font-size: 14px;
-  //     font-weight: 600;
-  //     text-transform: uppercase;
-  //   }
-  //   i {
-  //     font-size: 16px;
-  //     margin-right: 20px;
-  //   }
-  // }
   .header__btn {
     background-color: white;
     color: $bg;
@@ -80,6 +65,15 @@ header {
   align-items: center;
   i {
     font-size: 16px;
-    margin-right: 20px;
+    // 왼쪽으로 10px 떨어지게
+    margin-left: 20px;
+  }
+}
+
+.menu__list {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  &.showing {
+    opacity: 1;
   }
 }

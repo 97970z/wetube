@@ -74,9 +74,6 @@ export const postEdit = async (req, res) => {
 
   const isHeroku = process.env.NODE_ENV === "production";
 
-  //console.log(file);
-  // console.log(req.body);
-
   const emailChanged = email !== req.session.user.email;
   if (emailChanged) {
     const emailExist = await User.exists({ email });

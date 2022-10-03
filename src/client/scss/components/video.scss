@@ -17,6 +17,10 @@
       font-size: 18px;
       display: block;
       margin-top: 10px;
+      // 화면 크기가 작아지면 글자가 줄바꿈 되도록
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
     .video-mixin__meta {
       margin-top: 5px;

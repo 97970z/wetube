@@ -1,4 +1,5 @@
 extends base.pug
+include mixins/video
 
 block content
     div#videoContainer(data-id=video._id)
@@ -29,7 +30,6 @@ block content
             div
                 span 조회수 #{video.meta.views} 회 • 
                 span=new Date(video.createdAt).toLocaleDateString("ko-kr", {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'})
-                //- small #{printUploadedDay}
                 small &nbsp;
                 small (#{uploadedTime})
             nav
@@ -42,7 +42,7 @@ block content
         br
         div.video__info2
             small.video__owner Uploaded by 
-                a(href=`/users/${video.owner._id}`)=video.owner.name
+                a(href=`/users/${video.owner._id}`)=video.owner.username
             br
             br
             div.video__description
@@ -51,30 +51,65 @@ block content
                 span#moreBtn.video__description--moreBtn 더보기
         br
 
-    
-    div.video__comments__input
+    div.video__comment--header
         span.commentCount 댓글 #{video.comments.length} 개
-        if loggedIn
-                div.video__add-comments
-                    form.video__comment-form#commentForm(data-username=loggedInUser.username)
-                        textarea.video__comment-form__text#textarea(name="commentInput",placeholder="댓글 추가...", required,
-                        onKeyUp="this.style.height = '1px'; this.style.height = (12 + this.scrollHeight) + 'px';",
-                        onKeyDown="this.style.height = '1px'; this.style.height = (12 + this.scrollHeight) + 'px';",
-                        onfocus="this.placeholder=''",
-                        onblur="this.placeholder='댓글 추가...'")
-                        button(href="#").video__comment-form__btn 댓글
+        span.video__recomendations--title 추천 동영상
+
+    div.holy
+        div.video__comments__input
+            if loggedIn
+                    div.video__add-comments
+                        form.video__comment-form#commentForm(data-username=loggedInUser.username)
+                            textarea.video__comment-form__text#textarea(name="commentInput",placeholder="댓글 추가...", required,
+                            onKeyUp="this.style.height = '1px'; this.style.height = (12 + this.scrollHeight) + 'px';",
+                            onKeyDown="this.style.height = '1px'; this.style.height = (12 + this.scrollHeight) + 'px';",
+                            onfocus="this.placeholder=''",
+                            onblur="this.placeholder='댓글 추가...'")
+                            button(href="#").video__comment-form__btn 댓글
+            
+            div.video__comments
+                ul
+                    each comment in comments
+                        li.video__comment(data-id=comment.id)
+                            div.video__comment--left
+                                a(href=`/users/${comment.owner_id}`)=comment.username
+                                div.video__comment--spans
+                                    span #{comment.createdAt}
+                                    span #{comment.text}
+                            if String(comment.owner_id) === String(loggedInUser._id)
+                                span.video__comment__deleteBtn#deleteBtn ❌
+
+        div.video__recomendations
+            div.video__recomendations--videos
+                //- 현재 비디오의 id를 변수에 저장
+                - const currentVideoId = video._id
+
+                each video in videos
+                    //- 만약 each로 받아온 video의 id가 현재 video의 id와 같다면, 다음 video를 불러온다.
+                    if String(video._id) !== String(currentVideoId)
+                        div.video__recomendations--video
+                            a(href=`/videos/${video.id}`)
+                                img.video__recomendations--video__image(src=video.thumbUrl crossorigin)
+                                div.video__recomendations--video__info
+                                    //- video.title의 길이가 20자 이상이면, 20자까지만 잘라서 보여준다.
+                                    if video.title.length > 20
+                                        span.video__recomendations--video__title #{video.title.slice(0, 20)}...
+                                    else
+                                        span.video__recomendations--video__title #{video.title} <br>
+                                    span.video__recomendations--video__owner #{video.owner.username} <br>
+                                    span.video__recomendations--video__views 조회수 #{video.meta.views} 회
+                                    //- 해당되는 video의 업로드 날짜를 가져온다.
+                                    - const uploadedTime = new Date(video.createdAt).toLocaleDateString("ko-kr", {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'})
+                                    span.video__recomendations--video__date #{uploadedTime}
+                    else 
+                        continue
+                else
+                    div.video__recomendations--video
+                        span.video__recomendations--video__title 추천 동영상이 없습니다.
+
+
+    
         
-        div.video__comments
-            ul
-                each comment in comments
-                    li.video__comment(data-id=comment.id)
-                        div.video__comment--left
-                            a(href=`/users/${comment.owner_id}`)=comment.username
-                            div.video__comment--spans
-                                span #{comment.createdAt}
-                                span #{comment.text}
-                        if String(comment.owner_id) === String(loggedInUser._id)
-                            span.video__comment__deleteBtn#deleteBtn ❌
 
 block scripts 
     script(src="/static/js/videoPlayer.js")
