@@ -9,41 +9,20 @@ header
             i.fas.fa-search
         div.dropdown
             if loggedIn
-                //- hamburger menu
-                label(for="menu__toggle").menu__btn
-                    i.fas.fa-bars
-                //- list
-                div.dd
-                    ul.menu__list
-                        li
-                            a(href="/videos/upload").menu__item Upload Video
-                        li
-                            a(href=`/users/${loggedInUser._id}`).menu__item My Profile
-                        li
-                            a(href="/users/edit").menu__item Edit Profile
-                        li
-                            a(href="/users/logout").menu__item Log Out
-                //- a(href="/videos/upload").header__btn Upload Video
-                //- a(href=`/users/${loggedInUser._id}`).header__btn My Profile
-                //- a(href="/users/edit").header__btn Edit Profile
-                //- a(href="/users/logout").header__btn Log Out
-
-
-
-                //- span.dropbtn
-                //-     if loggedInUser.avatarUrl === ""
-                //-         span 😀
-                //-     else
-                //-         if loggedInUser.avatarUrl
-                //-             img.header__avatar(src=loggedInUser.avatarUrl crossorigin)
-                //- div.dropdown-content
-                //-         a(href="/videos/upload") Upload Video
-                //-         hr
-                //-         a(href=`/users/${loggedInUser._id}`) My Profile
-                //-         hr
-                //-         a(href="/users/edit") Edit Profile
-                //-         hr
-                //-         a(href="/users/logout")  Log Out
+                span.dropbtn
+                    if loggedInUser.avatarUrl === ""
+                        span 😀
+                    else
+                        if loggedInUser.avatarUrl
+                            img.header__avatar(src=loggedInUser.avatarUrl crossorigin)
+                div.dropdown-content
+                        a(href="/videos/upload") Upload Video
+                        hr
+                        a(href=`/users/${loggedInUser._id}`) My Profile
+                        hr
+                        a(href="/users/edit") Edit Profile
+                        hr
+                        a(href="/users/logout")  Log Out
             else
                 a(href="/login").header__btn Login
                 a(href="/join").header__btn Join

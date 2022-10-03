@@ -65,15 +65,10 @@ header {
   align-items: center;
   i {
     font-size: 16px;
-    // 왼쪽으로 10px 떨어지게
-    margin-left: 20px;
   }
 }
 
-.menu__list {
-  opacity: 0;
-  transition: opacity 0.5s ease-in-out;
-  &.showing {
-    opacity: 1;
-  }
+.dropdown {
+  padding-left: 30px;
+  padding-right: 30px;
 }

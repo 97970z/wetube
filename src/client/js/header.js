@@ -2,6 +2,9 @@
 const dropdown = document.getElementById("dropdown");
 const menuBtn = document.querySelector(".dd");
 
+let controlsTimeout = null;
+let controlsMovementTimeout = null;
+
 const hideControls = () => menuBtn.classList.remove("showing");
 
 const handleMouseMove = () => {
