@@ -175,6 +175,8 @@ export const deleteVideo = async (req, res) => {
   return res.redirect("/");
 };
 
+export const getSearch = (req, res) =>
+  res.render("search", { pageTitle: "Search" });
 export const search = async (req, res) => {
   const { keyword } = req.query;
   let videos = [];

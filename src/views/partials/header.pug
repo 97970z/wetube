@@ -5,16 +5,18 @@ header
         a(href="/").header__title HanTube
 
     div.menu
-        a(href="/search")
-            i.fas.fa-search
+        form(action="/search").search__form
+            input(placeholder="검색", name="keyword", type="text")
+            button
+                i.fas.fa-search
         div.dropdown
             if loggedIn
                 span.dropbtn
-                    if loggedInUser.avatarUrl === ""
-                        span 😀
+                    if loggedInUser.avatarUrl
+                        img.header__avatar(src=loggedInUser.avatarUrl crossorigin)
                     else
-                        if loggedInUser.avatarUrl
-                            img.header__avatar(src=loggedInUser.avatarUrl crossorigin)
+                        i.fas.fa-user-circle
+                            
                 div.dropdown-content
                         a(href="/videos/upload") Upload Video
                         hr
@@ -26,6 +28,6 @@ header
             else
                 a(href="/login").header__btn Login
                 a(href="/join").header__btn Join
-
+hr
 block scripts 
     script(src="/static/js/header.js")

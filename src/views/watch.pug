@@ -20,11 +20,16 @@ block content
             div
                 span#fullScreen
                     i.fas.fa-expand
+
     div.video__data
         div 
             each ht in video.hashtags
                 span.video__hashtags=ht + " "
-        p.video__title=video.title
+        if video.title.length > 40
+            span.video__title=video.title.substring(0,40) + "..."
+        else
+            span.video__title=video.title
+            //- p.video__title=video.title
         br
         div.video__info
             div
@@ -73,11 +78,15 @@ block content
                         li.video__comment(data-id=comment.id)
                             div.video__comment--left
                                 a(href=`/users/${comment.owner_id}`)=comment.username
+                                span.video__comment--left--date #{comment.createdAt}
                                 div.video__comment--spans
-                                    span #{comment.createdAt}
                                     span #{comment.text}
+                                    //- span.video__comment--like
+                                    //-     i.fa-regular.fa-thumbs-up.fa-sm
+                                        //- span #{comment.likes.length}
                             if String(comment.owner_id) === String(loggedInUser._id)
                                 span.video__comment__deleteBtn#deleteBtn ❌
+
 
         div.video__recomendations
             div.video__recomendations--videos

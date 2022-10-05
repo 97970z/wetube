@@ -130,10 +130,17 @@
   display: block;
 }
 
+.video__comment--left--date {
+  color: #aaa;
+  font-size: 14px;
+  margin-left: 5px;
+}
+
 .video__comment--spans {
   max-width: 580px;
   text-overflow: ellipsis;
   white-space: normal;
+  margin-top: 10px;
 }
 
 .video__comment--spans span:not(span:last-child) {
@@ -148,6 +155,10 @@
   overflow: hidden;
   max-height: none;
   font-size: 19px;
+}
+
+.video__comment--like {
+  margin-top: 5px;
 }
 
 .video__comment--header {

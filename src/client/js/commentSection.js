@@ -20,9 +20,12 @@ const addComment = (text, id) => {
   newCommentUserInfo.className = "video__comment--spans";
 
   const span = document.createElement("a");
-  span.innerText = `${form.dataset.username} `;
+  // a 태그에 href user id 추가
+  span.href = `/users/${id}`;
+  span.innerText = `${form.dataset.username}`;
 
   const span3 = document.createElement("span");
+  span3.className = "video__comment--left--date";
   span3.innerText = new Date().toLocaleDateString("ko-kr").replaceAll(" ", "");
 
   const span2 = document.createElement("span");
@@ -32,11 +35,11 @@ const addComment = (text, id) => {
   deleteSpan.className = ".video__comment__deleteBtn";
   deleteSpan.innerText = `❌`;
 
-  newCommentUserInfo.appendChild(span);
-  newCommentUserInfo.appendChild(span3);
+  newCommentLeft.appendChild(span);
+  newCommentLeft.appendChild(span3);
   newCommentUserInfo.appendChild(span2);
-  newCommentLeft.appendChild(newCommentUserInfo);
   newComment.appendChild(newCommentLeft);
+  newCommentLeft.appendChild(newCommentUserInfo);
   newComment.appendChild(deleteSpan);
   videoComments.prepend(newComment);
   deleteSpan.addEventListener("click", handleDeleteComment);
