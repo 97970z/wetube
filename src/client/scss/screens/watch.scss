@@ -111,6 +111,7 @@
 .video__comment-form__text:focus {
   border-bottom: 2px solid #aaa;
 }
+
 .video__comment-form__btn {
   margin-top: 15px;
   margin-left: 700px;
@@ -123,7 +124,6 @@
 
 .video__comment--left a {
   color: rgb(83, 198, 234);
-  text-decoration: underline;
   cursor: pointer;
 }
 .video__comment--left {
@@ -141,24 +141,22 @@
   text-overflow: ellipsis;
   white-space: normal;
   margin-top: 10px;
+  line-height: 1.5;
 }
 
-.video__comment--spans span:not(span:last-child) {
-  display: block;
-  color: #aaa;
-  font-size: 14px;
-  padding-top: 5px;
-  padding-bottom: 7px;
-}
+// .video__comment--spans span:not(span:last-child) {
+//   display: block;
+//   color: #aaa;
+//   font-size: 14px;
+//   padding-top: 5px;
+//   padding-bottom: 7px;
+// }
+
 .video__comment--spans span {
   display: block;
   overflow: hidden;
   max-height: none;
   font-size: 19px;
-}
-
-.video__comment--like {
-  margin-top: 5px;
 }
 
 .video__comment--header {

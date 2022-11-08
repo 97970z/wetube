@@ -81,9 +81,9 @@ block content
                                 span.video__comment--left--date #{comment.createdAt}
                                 div.video__comment--spans
                                     span #{comment.text}
-                                    //- span.video__comment--like
-                                    //-     i.fa-regular.fa-thumbs-up.fa-sm
-                                        //- span #{comment.likes.length}
+                                    span.video__likeBtn
+                                        i.fa-regular.fa-thumbs-up
+                                        span.video__likeCount
                             if String(comment.owner_id) === String(loggedInUser._id)
                                 span.video__comment__deleteBtn#deleteBtn ❌
 

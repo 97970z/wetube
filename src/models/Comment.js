@@ -6,7 +6,7 @@ const commentSchema = new mongoose.Schema({
   video: { type: mongoose.Schema.Types.ObjectId, required: true, ref: "Video" },
   createdAt: { type: Date, required: true, default: Date.now },
   // 댓글 좋아요
-  likes: [{ type: Number, default: 0 }],
+  likes: { type: Number, default: 0 },
 });
 
 const Comment = mongoose.model("Comment", commentSchema);
