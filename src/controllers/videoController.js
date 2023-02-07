@@ -242,19 +242,19 @@ export const deleteComment = async (req, res) => {
   return res.sendStatus(200);
 };
 
-export const likeComment = async (req, res) => {
-  const {
-    body: { videoId },
-    params: { id },
-    session: { user },
-  } = req;
+// export const likeComment = async (req, res) => {
+//   const {
+//     body: { videoId },
+//     params: { id },
+//     session: { user },
+//   } = req;
 
-  const video = await Video.findById(videoId);
-  const comment = await Comment.findById(id).populate("video");
-  if (String(comment.owner) === String(user._id)) {
-    return res.sendStatus(401);
-  }
-  comment.likes = comment.likes + 1;
-  await comment.save();
-  return res.sendStatus(200);
-};
+//   const video = await Video.findById(videoId);
+//   const comment = await Comment.findById(id).populate("video");
+//   if (String(comment.owner) === String(user._id)) {
+//     return res.sendStatus(401);
+//   }
+//   comment.likes = comment.likes + 1;
+//   await comment.save();
+//   return res.sendStatus(200);
+// };

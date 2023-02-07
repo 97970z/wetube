@@ -83,7 +83,7 @@ block content
                                     span #{comment.text}
                                     span.video__likeBtn
                                         i.fa-regular.fa-thumbs-up
-                                        span.video__likeCount
+                                        span.video__likeCount #{comment.like}
                             if String(comment.owner_id) === String(loggedInUser._id)
                                 span.video__comment__deleteBtn#deleteBtn ❌
 

@@ -59,18 +59,6 @@ const addComment = (text, id) => {
   deleteSpan.addEventListener("click", handleDeleteComment);
 };
 
-// 좋아요 버튼 클릭하면 아이콘 변경
-const handleLike = async (event) => {
-  // 한번 누르면 fa-solid.fa-thumbs-up로 변경
-  // if (likeIcon.classList.contains("fa-regular")) {
-  //   likeIcon.classList.remove("fa-regular");
-  //   likeIcon.classList.add("fa-solid");
-  // } else {
-  //   likeIcon.classList.remove("fa-solid");
-  //   likeIcon.classList.add("fa-regular");
-  // }
-};
-
 const handleSubmit = async (event) => {
   event.preventDefault();
   const textarea = form.querySelector("textarea");
@@ -121,6 +109,16 @@ const handleDeleteComment = async (event) => {
   }
 };
 
+// const handleLike = async (event) => {
+//   event.preventDefault();
+
+//   let like = document.querySelectorAll(".video__likeCount");
+//   let commentLikeCount = like.length + 1;
+//   likeCount.forEach(
+//     (likeCount) => (likeCount.innerHTML = `댓글 ${commentLikeCount} 개`)
+//   );
+// };
+
 if (form) {
   form.addEventListener("submit", handleSubmit);
 }
@@ -129,6 +127,6 @@ if (deleteBtns) {
     deleteBtn.addEventListener("click", handleDeleteComment);
   });
 }
-if (likeBtn) {
-  likeBtn.addEventListener("click", handleLike);
-}
+// if (likeIcon) {
+//   likeIcon.addEventListener("click", handleLike);
+// }
