@@ -1,6 +1,6 @@
 # Youtube Clone
 
-[http://videotubetest.herokuapp.com/](http://videotubetest.herokuapp.com/)
+[https://hantube.fly.dev/](https://hantube.fly.dev/)
 
 JavaScript를 배우고 재밌게 공부할 수 있는 방법으로 현재 서비스되는 사이트를 클론하는 것을 선택하였습니다.
 JavaScript, nodeJS, MongoDB, Webpack, AWS S3 등 다양한 기술을 사용할 기회였습니다.
